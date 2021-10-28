@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        <link rel="canonical" href="https://example.com/">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>RegEx HU</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">RegEx HU</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="about/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#regex" class="nav-link">RegEx</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#horgonyok" class="nav-link">Horgonyok</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#karakter-osztalyok" class="nav-link">Karakter osztályok</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#posix" class="nav-link">POSIX</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#specialis-karakterek" class="nav-link">Speciális karakterek</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#szamlalok" class="nav-link">Számlálók</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#meta-karakterek" class="nav-link">Meta-karakterek</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#csoportok-es-reszletek" class="nav-link">Csoportok és részletek</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#peldak" class="nav-link">Példák</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#e-mail-cim" class="nav-link">E-mail cím</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="regex">RegEx</h1>
+<h2 id="horgonyok">Horgonyok</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">^</td>
+<td>Szöveg eleje vagy ha többsoros a szöveg akkor sor eleje</td>
+</tr>
+<tr>
+<td align="center">\A</td>
+<td>Szöveg eleje</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td>Szöveg vége vagy ha többsoros a szöveg akkor sor vége</td>
+</tr>
+<tr>
+<td align="center">\Z</td>
+<td>Szöveg vége</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td>Szó határ, ha a szöveg szavaiban akarunk keresni és nem csak a soraiban</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td>Nem szó határ, ha a szöveg szavainak belsejében akarunk keresni és nem csak a szavak kezdetében vagy végében</td>
+</tr>
+<tr>
+<td align="center">\&lt;</td>
+<td>Szó eleje</td>
+</tr>
+<tr>
+<td align="center">\&gt;</td>
+<td>Szó vége</td>
+</tr>
+</tbody>
+</table>
+<h2 id="karakter-osztalyok">Karakter osztályok</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">\s</td>
+<td>White space karakterek (szóköz, tabulátor, új sor, stb.)</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td>Nem white space karakter</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td>Szám</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td>Nem szám</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td>Szó</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td>Nem szó</td>
+</tr>
+</tbody>
+</table>
+<h2 id="posix">POSIX</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">[:upper:]</td>
+<td>Nagybetűk</td>
+</tr>
+<tr>
+<td align="center">[:lower:]</td>
+<td>Kisbetűk</td>
+</tr>
+<tr>
+<td align="center">[:alpha:]</td>
+<td>Betűk</td>
+</tr>
+<tr>
+<td align="center">[:alnum:]</td>
+<td>Számok és betűk</td>
+</tr>
+<tr>
+<td align="center">[:digit:]</td>
+<td>Számok</td>
+</tr>
+<tr>
+<td align="center">[:punct:]</td>
+<td>Központozás</td>
+</tr>
+<tr>
+<td align="center">[:blank:]</td>
+<td>Szóköz és tabulátor</td>
+</tr>
+<tr>
+<td align="center">[:space:]</td>
+<td>Üres karakterek (mint pl. szóköz)</td>
+</tr>
+<tr>
+<td align="center">[:graph:]</td>
+<td>Látható karakterek</td>
+</tr>
+<tr>
+<td align="center">[:print:]</td>
+<td>Látható karakterek és szóközök</td>
+</tr>
+<tr>
+<td align="center">[:word:]</td>
+<td>Számok, betűk és alulvonások</td>
+</tr>
+</tbody>
+</table>
+<h2 id="specialis-karakterek">Speciális karakterek</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">\n</td>
+<td>Új sor</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td>Tabulátor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="szamlalok">Számlálók</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">*</td>
+<td>0 vagy több</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td>1 vagy több</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td>0 vagy 1</td>
+</tr>
+<tr>
+<td align="center">{3}</td>
+<td>Pontosan 3</td>
+</tr>
+<tr>
+<td align="center">{3,}</td>
+<td>3 vagy több</td>
+</tr>
+<tr>
+<td align="center">{3,5}</td>
+<td>3, 4 vagy 5</td>
+</tr>
+</tbody>
+</table>
+<p><code>? hozzáadásával nem csak az első hanem az összes találatot visszaadja</code></p>
+<h2 id="meta-karakterek">Meta-karakterek</h2>
+<p>Karakterek amik speciális funkciókat is jelölnek a RegEx berkein belül, ha -t teszünk elé, nem ezt a fuckcióját nézi, hanem a nyers karaktert.
+Ezek a karakterek:</p>
+<pre><code>^ [ . $ { * ( \ + ) | ? &lt; &gt; 
+</code></pre>
+<h2 id="csoportok-es-reszletek">Csoportok és részletek</h2>
+<table>
+<thead>
+<tr>
+<th align="center">RegEx</th>
+<th>Funkciója</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">.</td>
+<td>Bármilyen karakter kivéve új sor (\n)</td>
+</tr>
+<tr>
+<td align="center">(a|b)</td>
+<td>a vagy b</td>
+</tr>
+<tr>
+<td align="center">(...)</td>
+<td>Csoport</td>
+</tr>
+<tr>
+<td align="center">(?:...)</td>
+<td>Passzív, nem találatként kezelt csoport</td>
+</tr>
+<tr>
+<td align="center">[abc]</td>
+<td>Részlet (a vagy b vagy c)</td>
+</tr>
+<tr>
+<td align="center">[^abc]</td>
+<td>Nem (a vagy b vagy c)</td>
+</tr>
+<tr>
+<td align="center">[a-q]</td>
+<td>Kisbetűk a-tól q-ig</td>
+</tr>
+<tr>
+<td align="center">[A-Q]</td>
+<td>Nagybetűk A-tól Q-ig</td>
+</tr>
+<tr>
+<td align="center">[0-7]</td>
+<td>Számok 0-tól 7-ig</td>
+</tr>
+</tbody>
+</table>
+<h1 id="peldak">Példák</h1>
+<h2 id="e-mail-cim">E-mail cím</h2>
+<p><code>\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b</code></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.2.3
+Build Date UTC : 2021-10-28 19:49:35.387946+00:00
+-->
